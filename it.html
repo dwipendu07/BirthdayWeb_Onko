@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Happy Birthday Onko ❤️</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <audio id="bg-music" loop preload="auto">
+    <source src="music1.mp3" type="audio/mpeg">
+  </audio>
+
+  <section class="hero">
+    <div class="glass">
+      <h1>Happy Birthday Onko ❤️</h1>
+      <p id="typing"></p>
+      <button class="btn" onclick="openGift()">🎁 Open Your Surprise</button>
+      <button id="music-toggle" class="btn">🔊 Play Music</button>
+    </div>
+  </section>
+
+  <section id="surprise" class="section hidden">
+    <div class="glass">
+      <h2>From Dibbe To Onko ❤️</h2>
+      <p>You are my favorite smile, favorite memory and favorite future.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="glass">
+      <h2>📸 Our Memories</h2>
+      <p>Unlock the secret vault to see our beautiful memories together! ❤️</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="glass">
+      <h2>💌 Letter For Onko</h2>
+      <p>
+        Dear Onko,<br><br>
+        A amazing phase of my love story is when Dibbe meets Onko.<br><br>
+        Ufff... really every moments like magical moments.<br><br>
+        Thank you... thank you so much for everything.<br><br>
+        Happy Birthday ❤️<br><br>
+        Forever Yours,<br>
+        Dibbe
+      </p>
+    </div>
+  </section>
+  
+  <section class="section">
+    <div class="glass">
+      <h2>🔐 Secret Vault</h2>
+      <input id="pwd" placeholder="Enter password">
+      <br>
+      <button class="btn" onclick="checkPass()">Unlock</button>
+      <div id="secret" class="hidden">
+        <h3>❤️ Secret Message</h3>
+        <p>
+          A amazing phase of my love story is when Dibbe meets Onko.
+          Ufff... really every moments like magical moments.
+          Thank you... thank you so much for everything.
+        </p>
+        <br>
+        <button class="btn" onclick="startSecretSlideshow()">📸 View Our Memories</button>
+        <div id="secret-slideshow" class="slideshow hidden">
+          <button id="ss-prev" class="ss-nav">&#10094;</button>
+          <div class="ss-inner">
+            <img id="ss-image" class="ss-image" src="" alt="">
+            <div id="ss-caption" class="ss-caption"></div>
+          </div>
+          <button id="ss-next" class="ss-nav">&#10095;</button>
+          <div class="ss-controls">
+            <button id="ss-play" class="btn">⏯</button>
+          </div>
+        </div>
+        <div id="gallery" class="gallery"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="glass">
+      <h2>🎂 Birthday Wishes</h2>
+      <p>May your life be filled with happiness, success and endless smiles.</p>
+      <button class="btn" onclick="fireworks()">🎆 Celebrate</button>
+    </div>
+  </section>
+
+  <footer>
+    Happy Birthday Onko ❤️ — Made by Dibbe
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
