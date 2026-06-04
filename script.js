@@ -18,18 +18,101 @@ function openGift() {
   triggerBalloonAnimation();
 }
 
-// Celebration alert function
-function fireworks() {
-  alert("🎆 Happy Birthday Onko ❤️ 🎆");
-  triggerBalloonAnimation();
+// Cut Cake function with animation
+function cutCake() {
+  const cakeContainer = document.getElementById('cake-container');
+  cakeContainer.classList.remove('hidden');
+  
+  // Create candles
+  createCandles();
+  
+  // Wait for animation then trigger balloons and confetti
+  setTimeout(() => {
+    createConfetti();
+    triggerBalloonAnimation();
+    
+    // Close cake after animation
+    setTimeout(() => {
+      cakeContainer.classList.add('hidden');
+    }, 3000);
+  }, 1500);
+}
+
+function createCandles() {
+  const candlesContainer = document.getElementById('candles-container');
+  candlesContainer.innerHTML = '';
+  
+  const candleCount = 7;
+  for (let i = 0; i < candleCount; i++) {
+    const candle = document.createElement('div');
+    candle.className = 'candle';
+    
+    const flame = document.createElement('div');
+    flame.className = 'flame';
+    
+    candle.appendChild(flame);
+    candlesContainer.appendChild(candle);
+  }
+}
+
+function createConfetti() {
+  const confettiCount = 50;
+  for (let i = 0; i < confettiCount; i++) {
+    setTimeout(() => createConfettiPiece(), i * 30);
+  }
+}
+
+function createConfettiPiece() {
+  const confetti = document.createElement('div');
+  confetti.className = 'confetti';
+  
+  const colors = ['#FF6B6B', '#4ECDC4', '#FFE66D', '#A8E6CF', '#FF8B94', '#B19CD9', '#FFD700', '#FF1493'];
+  const randomColor = colors[Math.floor(Math.random() * colors.length)];
+  
+  confetti.style.cssText = `
+    background: ${randomColor};
+    left: ${window.innerWidth / 2}px;
+    top: ${window.innerHeight / 2}px;
+    position: fixed;
+    z-index: 400;
+  `;
+  
+  document.body.appendChild(confetti);
+  
+  const duration = Math.random() * 2000 + 1500;
+  const randomX = (Math.random() - 0.5) * 400;
+  const randomY = Math.random() * 400 + 200;
+  const rotation = Math.random() * 720;
+  
+  const keyframes = `
+    @keyframes confetti-fall-${Math.random()} {
+      0% {
+        transform: translate(0, 0) rotate(0deg);
+        opacity: 1;
+      }
+      100% {
+        transform: translate(${randomX}px, ${randomY}px) rotate(${rotation}deg);
+        opacity: 0;
+      }
+    }
+  `;
+  
+  const style = document.createElement('style');
+  style.textContent = keyframes;
+  document.head.appendChild(style);
+  
+  const animName = `confetti-fall-${Math.random()}`;
+  confetti.style.animation = `${animName} ${duration}ms ease-out forwards`;
+  
+  setTimeout(() => confetti.remove(), duration);
 }
 
 // --- Balloon & Star Animation ---
 function triggerBalloonAnimation() {
   // Create multiple balloons
-  const balloonCount = 8;
+  const balloonCount = 12;
   for (let i = 0; i < balloonCount; i++) {
-    setTimeout(() => createBalloon(), i * 150);
+    setTimeout(() => createBalloon(), i * 100);
   }
   // Create stars continuously
   createStarBurst();
@@ -38,7 +121,7 @@ function triggerBalloonAnimation() {
 function createBalloon() {
   const balloon = document.createElement('div');
   balloon.className = 'balloon';
-  const colors = ['#FF6B6B', '#4ECDC4', '#FFE66D', '#A8E6CF', '#FF8B94', '#B19CD9'];
+  const colors = ['#FF6B6B', '#4ECDC4', '#FFE66D', '#A8E6CF', '#FF8B94', '#B19CD9', '#FF1493', '#00CED1', '#FFD700', '#FF69B4'];
   const randomColor = colors[Math.floor(Math.random() * colors.length)];
   
   balloon.style.cssText = `
@@ -93,12 +176,12 @@ function createBalloon() {
 }
 
 function createStarBurst() {
-  const starCount = 20;
+  const starCount = 30;
   for (let i = 0; i < starCount; i++) {
     const star = document.createElement('div');
     star.className = 'star';
     
-    const size = Math.random() * 3 + 2;
+    const size = Math.random() * 4 + 2;
     const randomX = Math.random() * window.innerWidth;
     const randomY = Math.random() * (window.innerHeight * 0.8);
     
@@ -151,6 +234,7 @@ function checkPass() {
 const IMAGES = [
   'photo1.jpg','photo2.jpg','photo3.jpg','photo4.jpg','photo5.jpg','photo6.jpg','photo7.jpg','photo8.png','photo9.jpg','photo10.jpg','photo11.jpg','photo12.jpg','photo13.jpg','photo14.jpg','photo15.jpg'
 ];
+
 // Load all images from the images/ folder into the gallery
 function loadGallery() {
   const gallery = document.getElementById('gallery');
