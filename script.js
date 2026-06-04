@@ -29,7 +29,8 @@ function cutCake() {
   // Wait for animation then trigger balloons and confetti
   setTimeout(() => {
     createConfetti();
-    triggerBalloonAnimation();
+    // Enhanced balloon animation with more balloons
+    triggerEnhancedBalloonAnimation();
     
     // Close cake after animation
     setTimeout(() => {
@@ -118,10 +119,21 @@ function triggerBalloonAnimation() {
   createStarBurst();
 }
 
+// Enhanced Balloon Animation - More balloons with faster creation
+function triggerEnhancedBalloonAnimation() {
+  // Create more balloons rapidly after cake cutting
+  const balloonCount = 25;
+  for (let i = 0; i < balloonCount; i++) {
+    setTimeout(() => createBalloon(), i * 50);
+  }
+  // Create stars continuously
+  createStarBurst();
+}
+
 function createBalloon() {
   const balloon = document.createElement('div');
   balloon.className = 'balloon';
-  const colors = ['#FF6B6B', '#4ECDC4', '#FFE66D', '#A8E6CF', '#FF8B94', '#B19CD9', '#FF1493', '#00CED1', '#FFD700', '#FF69B4'];
+  const colors = ['#FF6B6B', '#4ECDC4', '#FFE66D', '#A8E6CF', '#FF8B94', '#B19CD9', '#FF1493', '#00CED1', '#FFD700', '#FF69B4', '#FF4500', '#32CD32', '#FF00FF', '#00BFFF'];
   const randomColor = colors[Math.floor(Math.random() * colors.length)];
   
   balloon.style.cssText = `
@@ -134,6 +146,7 @@ function createBalloon() {
     border-radius: 50% 50% 50% 0;
     transform: rotate(${Math.random() * 360}deg);
     z-index: 100;
+    box-shadow: inset -2px -2px 5px rgba(0,0,0,0.2);
   `;
   
   const string = document.createElement('div');
@@ -150,16 +163,21 @@ function createBalloon() {
   balloon.appendChild(string);
   document.body.appendChild(balloon);
   
-  // Animate balloon floating up
-  const duration = 4000 + Math.random() * 2000;
+  // Animate balloon floating up with varied speed and movement
+  const duration = 3500 + Math.random() * 2500;
+  const sway = (Math.random() - 0.5) * 300;
   const keyframes = `
     @keyframes float-up-${Math.random()} {
       0% {
-        transform: translateY(0) rotate(${Math.random() * 360}deg);
+        transform: translateY(0) translateX(0) rotate(${Math.random() * 360}deg) scale(1);
+        opacity: 1;
+      }
+      50% {
+        transform: translateY(-${window.innerHeight / 2}px) translateX(${sway}px) rotate(${Math.random() * 360}deg) scale(1.05);
         opacity: 1;
       }
       100% {
-        transform: translateY(-${window.innerHeight + 200}px) translateX(${(Math.random() - 0.5) * 200}px) rotate(${Math.random() * 360}deg);
+        transform: translateY(-${window.innerHeight + 200}px) translateX(${(Math.random() - 0.5) * 200}px) rotate(${Math.random() * 360}deg) scale(0.8);
         opacity: 0;
       }
     }
@@ -232,7 +250,7 @@ function checkPass() {
 
 // Central list of images (update names if you add/remove files)
 const IMAGES = [
-  'photo1.jpg','photo2.jpg','photo3.jpg','photo4.jpg','photo5.jpg','photo6.jpg','photo7.jpg','photo8.png','photo9.jpg','photo10.jpg','photo11.jpg','photo12.jpg','photo13.jpg','photo14.jpg','photo15.jpg','photo16.png','photo17.jpg','photo18.jpg'
+  'photo1.jpg','photo2.jpg','photo3.jpg','photo4.jpg','photo5.jpg','photo6.jpg','photo7.jpg','photo8.png','photo9.jpg','photo10.jpg','photo11.jpg','photo12.jpg','photo13.jpg','photo14.jpg','photo15.jpg'
 ];
 
 // Load all images from the images/ folder into the gallery
