@@ -45,3 +45,38 @@ input{padding:10px;border-radius:10px;border:none;margin:10px}
 
 /* Music button small tweak */
 #music-toggle{margin-left:12px}
+
+/* Cake Animation Styles */
+.cake-container{position:fixed;top:50%;left:50%;transform:translate(-50%, -50%);z-index:500;display:flex;align-items:center;justify-content:center;width:100%;height:100%;background:rgba(0,0,0,0.4);backdrop-filter:blur(3px)}
+
+.cake-container.hidden{display:none}
+
+.cake{position:relative;width:200px;height:200px;perspective:1000px}
+
+.cake-layer{position:absolute;left:50%;transform:translateX(-50%);width:200px;background:linear-gradient(135deg, #D2691E 0%, #8B4513 100%);border-radius:10px}
+
+.cake-bottom{bottom:0;height:60px;background:linear-gradient(135deg, #CD853F 0%, #8B4513 100%)}
+
+.cake-middle{bottom:60px;height:70px;background:linear-gradient(135deg, #DAA520 0%, #B8860B 100%)}
+
+.cake-top{bottom:130px;height:50px;background:linear-gradient(135deg, #FFB6C1 0%, #FF69B4 100%);border-radius:20px}
+
+.candles-container{position:absolute;bottom:180px;left:50%;transform:translateX(-50%);width:180px;display:flex;justify-content:space-around;align-items:flex-end}
+
+.candle{position:relative;width:8px;height:60px;background:#FFD700;border-radius:4px}
+
+.candle::before{content:'';position:absolute;top:-15px;left:50%;transform:translateX(-50%);width:6px;height:15px;background:linear-gradient(to top, #FF6347 0%, #FFD700 100%);border-radius:50%}
+
+.flame{position:absolute;width:6px;height:15px;top:-15px;left:50%;transform:translateX(-50%);animation:flicker 0.3s infinite}
+
+@keyframes flicker{0%{background:#FF4500;transform:translateX(-50%) scaleY(1)}50%{background:#FFD700;transform:translateX(-50%) scaleY(1.2)}100%{background:#FF6347;transform:translateX(-50%) scaleY(0.9)}}
+
+.knife-container{position:absolute;right:-100px;top:50%;transform:translateY(-50%)}
+
+.knife{width:120px;height:8px;background:#C0C0C0;border-radius:4px;box-shadow:0 0 20px rgba(192,192,192,0.8);transform-origin:left center;animation:cut-cake 1.5s ease-in-out forwards}
+
+@keyframes cut-cake{0%{transform:translateX(0) rotateZ(-30deg)}50%{transform:translateX(-80px) rotateZ(0deg)}100%{transform:translateX(-80px) rotateZ(30deg)}}
+
+.confetti{position:fixed;width:10px;height:10px;pointer-events:none}
+
+.particle{position:fixed;pointer-events:none}
