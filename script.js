@@ -135,16 +135,17 @@ function createBalloon() {
   balloon.className = 'balloon';
   const colors = ['#FF6B6B', '#4ECDC4', '#FFE66D', '#A8E6CF', '#FF8B94', '#B19CD9', '#FF1493', '#00CED1', '#FFD700', '#FF69B4', '#FF4500', '#32CD32', '#FF00FF', '#00BFFF'];
   const randomColor = colors[Math.floor(Math.random() * colors.length)];
+  const randomRotation = Math.random() * 360;
+  const randomLeft = Math.random() * 100;
   
   balloon.style.cssText = `
     position: fixed;
     bottom: -50px;
-    left: ${Math.random() * 100}%;
+    left: ${randomLeft}%;
     width: 40px;
     height: 50px;
     background: ${randomColor};
     border-radius: 50% 50% 50% 0;
-    transform: rotate(${Math.random() * 360}deg);
     z-index: 100;
     box-shadow: inset -2px -2px 5px rgba(0,0,0,0.2);
   `;
@@ -166,18 +167,22 @@ function createBalloon() {
   // Animate balloon floating up with varied speed and movement
   const duration = 3500 + Math.random() * 2500;
   const sway = (Math.random() - 0.5) * 300;
+  const randomEndRotation = Math.random() * 360;
+  const randomEndX = (Math.random() - 0.5) * 200;
+  
+  const animName = `float-up-${Date.now()}-${Math.random()}`;
   const keyframes = `
-    @keyframes float-up-${Math.random()} {
+    @keyframes ${animName} {
       0% {
-        transform: translateY(0) translateX(0) rotate(${Math.random() * 360}deg) scale(1);
+        transform: translateY(0) translateX(0) rotate(${randomRotation}deg) scale(1);
         opacity: 1;
       }
       50% {
-        transform: translateY(-${window.innerHeight / 2}px) translateX(${sway}px) rotate(${Math.random() * 360}deg) scale(1.05);
+        transform: translateY(-${window.innerHeight / 2}px) translateX(${sway}px) rotate(${randomEndRotation}deg) scale(1.05);
         opacity: 1;
       }
       100% {
-        transform: translateY(-${window.innerHeight + 200}px) translateX(${(Math.random() - 0.5) * 200}px) rotate(${Math.random() * 360}deg) scale(0.8);
+        transform: translateY(-${window.innerHeight + 200}px) translateX(${randomEndX}px) rotate(${randomEndRotation + 180}deg) scale(0.8);
         opacity: 0;
       }
     }
@@ -187,7 +192,6 @@ function createBalloon() {
   style.textContent = keyframes;
   document.head.appendChild(style);
   
-  const animName = `float-up-${Math.random()}`;
   balloon.style.animation = `${animName} ${duration}ms ease-in forwards`;
   
   setTimeout(() => balloon.remove(), duration);
@@ -220,8 +224,9 @@ function createStarBurst() {
     
     // Twinkling animation
     const duration = Math.random() * 1500 + 800;
+    const animName = `twinkle-${Date.now()}-${Math.random()}`;
     const keyframes = `
-      @keyframes twinkle-${Math.random()} {
+      @keyframes ${animName} {
         0%, 100% { opacity: 0; transform: scale(0.5); }
         50% { opacity: 1; transform: scale(1); }
       }
@@ -231,7 +236,6 @@ function createStarBurst() {
     style.textContent = keyframes;
     document.head.appendChild(style);
     
-    const animName = `twinkle-${Math.random()}`;
     star.style.animation = `${animName} ${duration}ms ease-in-out infinite`;
     
     setTimeout(() => star.remove(), 8000);
