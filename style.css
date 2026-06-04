@@ -47,7 +47,7 @@ input{padding:10px;border-radius:10px;border:none;margin:10px}
 #music-toggle{margin-left:12px}
 
 /* Cake Animation Styles */
-.cake-container{position:fixed;top:50%;left:50%;transform:translate(-50%, -50%);z-index:500;display:flex;align-items:center;justify-content:center;width:100%;height:100%;background:rgba(0,0,0,0.4);backdrop-filter:blur(3px)}
+.cake-container{position:fixed;top:50%;left:50%;transform:translate(-50%, -50%);z-index:500;display:flex;align-items:center;justify-content:center;width:100%;height:100%;background:rgba(0,0,0,0.4)}
 
 .cake-container.hidden{display:none}
 
@@ -69,7 +69,7 @@ input{padding:10px;border-radius:10px;border:none;margin:10px}
 
 .flame{position:absolute;width:6px;height:15px;top:-15px;left:50%;transform:translateX(-50%);animation:flicker 0.3s infinite}
 
-@keyframes flicker{0%{background:#FF4500;transform:translateX(-50%) scaleY(1)}50%{background:#FFD700;transform:translateX(-50%) scaleY(1.2)}100%{background:#FF6347;transform:translateX(-50%) scaleY(0.9)}}
+@keyframes flicker{0%{background:#FF4500;transform:translateX(-50%) scaleY(1)}50%{background:#FFD700;transform:translateX(-50%) scaleY(1.2)}100%{background:#FF6347;transform:translateX(-50%) scaleY(0.8)}}
 
 .knife-container{position:absolute;right:-100px;top:50%;transform:translateY(-50%)}
 
@@ -80,3 +80,24 @@ input{padding:10px;border-radius:10px;border:none;margin:10px}
 .confetti{position:fixed;width:10px;height:10px;pointer-events:none}
 
 .particle{position:fixed;pointer-events:none}
+
+/* Balloon Styles */
+.balloon{position:fixed;pointer-events:none;will-change:transform;filter:drop-shadow(0 4px 8px rgba(0,0,0,0.3))}
+
+/* Star Styles */
+.star{position:fixed;pointer-events:none;will-change:transform}
+
+/* Button Styles */
+.btn{background:linear-gradient(135deg, #667eea 0%, #764ba2 100%);color:#fff;font-size:16px;font-weight:600;transition:all 0.3s ease;box-shadow:0 4px 15px rgba(102,126,234,0.4)}
+
+.btn:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(102,126,234,0.6)}
+
+.btn:active{transform:translateY(0)}
+
+/* Responsive */
+@media (max-width:768px){
+	.section{padding:60px 20px}
+	.glass{padding:20px}
+	.gallery{grid-template-columns:repeat(auto-fit,minmax(150px,1fr))}
+	.gallery img{height:200px}
+}
