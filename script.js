@@ -443,3 +443,30 @@ document.addEventListener('DOMContentLoaded', () => {
   initSlideshow();
   initMusic();
 });
+// --- Sayari edit/save helpers ---
+function editSayari() {
+  const text = document.getElementById('sayari-text');
+  const input = document.getElementById('sayari-input');
+  const editBtn = document.getElementById('sayari-edit-btn');
+  const saveBtn = document.getElementById('sayari-save-btn');
+  if (!text || !input || !editBtn || !saveBtn) return;
+  input.value = text.textContent.trim();
+  text.classList.add('hidden');
+  input.classList.remove('hidden');
+  editBtn.classList.add('hidden');
+  saveBtn.classList.remove('hidden');
+  input.focus();
+}
+// --- Sayari edit/save helpers ---
+function saveSayari() {
+  const text = document.getElementById('sayari-text');
+  const input = document.getElementById('sayari-input');
+  const editBtn = document.getElementById('sayari-edit-btn');
+  const saveBtn = document.getElementById('sayari-save-btn');
+  if (!text || !input || !editBtn || !saveBtn) return;
+  text.textContent = input.value || '—';
+  text.classList.remove('hidden');
+  input.classList.add('hidden');
+  editBtn.classList.remove('hidden');
+  saveBtn.classList.add('hidden');
+}
