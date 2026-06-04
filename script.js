@@ -14,6 +14,127 @@ function type() {
 function openGift() {
   document.getElementById("surprise").classList.remove("hidden");
   window.scrollTo({ top: window.innerHeight, behavior: "smooth" });
+  // Trigger balloon and star animation
+  triggerBalloonAnimation();
+}
+
+// Celebration alert function
+function fireworks() {
+  alert("🎆 Happy Birthday Onko ❤️ 🎆");
+  triggerBalloonAnimation();
+}
+
+// --- Balloon & Star Animation ---
+function triggerBalloonAnimation() {
+  // Create multiple balloons
+  const balloonCount = 8;
+  for (let i = 0; i < balloonCount; i++) {
+    setTimeout(() => createBalloon(), i * 150);
+  }
+  // Create stars continuously
+  createStarBurst();
+}
+
+function createBalloon() {
+  const balloon = document.createElement('div');
+  balloon.className = 'balloon';
+  const colors = ['#FF6B6B', '#4ECDC4', '#FFE66D', '#A8E6CF', '#FF8B94', '#B19CD9'];
+  const randomColor = colors[Math.floor(Math.random() * colors.length)];
+  
+  balloon.style.cssText = `
+    position: fixed;
+    bottom: -50px;
+    left: ${Math.random() * 100}%;
+    width: 40px;
+    height: 50px;
+    background: ${randomColor};
+    border-radius: 50% 50% 50% 0;
+    transform: rotate(${Math.random() * 360}deg);
+    z-index: 100;
+  `;
+  
+  const string = document.createElement('div');
+  string.style.cssText = `
+    position: absolute;
+    width: 2px;
+    height: 80px;
+    background: rgba(0,0,0,0.2);
+    left: 50%;
+    top: 100%;
+    transform: translateX(-50%);
+  `;
+  
+  balloon.appendChild(string);
+  document.body.appendChild(balloon);
+  
+  // Animate balloon floating up
+  const duration = 4000 + Math.random() * 2000;
+  const keyframes = `
+    @keyframes float-up-${Math.random()} {
+      0% {
+        transform: translateY(0) rotate(${Math.random() * 360}deg);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-${window.innerHeight + 200}px) translateX(${(Math.random() - 0.5) * 200}px) rotate(${Math.random() * 360}deg);
+        opacity: 0;
+      }
+    }
+  `;
+  
+  const style = document.createElement('style');
+  style.textContent = keyframes;
+  document.head.appendChild(style);
+  
+  const animName = `float-up-${Math.random()}`;
+  balloon.style.animation = `${animName} ${duration}ms ease-in forwards`;
+  
+  setTimeout(() => balloon.remove(), duration);
+}
+
+function createStarBurst() {
+  const starCount = 20;
+  for (let i = 0; i < starCount; i++) {
+    const star = document.createElement('div');
+    star.className = 'star';
+    
+    const size = Math.random() * 3 + 2;
+    const randomX = Math.random() * window.innerWidth;
+    const randomY = Math.random() * (window.innerHeight * 0.8);
+    
+    star.style.cssText = `
+      position: fixed;
+      left: ${randomX}px;
+      top: ${randomY}px;
+      width: ${size}px;
+      height: ${size}px;
+      background: #FFD700;
+      border-radius: 50%;
+      box-shadow: 0 0 ${size * 2}px #FFD700;
+      z-index: 50;
+      pointer-events: none;
+    `;
+    
+    document.body.appendChild(star);
+    
+    // Twinkling animation
+    const duration = Math.random() * 1500 + 800;
+    const keyframes = `
+      @keyframes twinkle-${Math.random()} {
+        0%, 100% { opacity: 0; transform: scale(0.5); }
+        50% { opacity: 1; transform: scale(1); }
+      }
+    `;
+    
+    const style = document.createElement('style');
+    style.textContent = keyframes;
+    document.head.appendChild(style);
+    
+    const animName = `twinkle-${Math.random()}`;
+    star.style.animation = `${animName} ${duration}ms ease-in-out infinite`;
+    
+    setTimeout(() => star.remove(), 8000);
+  }
 }
 
 // Secret Vault password verification
@@ -26,13 +147,9 @@ function checkPass() {
   }
 }
 
-// Celebration alert function
-function fireworks() {
-  alert("🎆 Happy Birthday Onko ❤️ 🎆");
-}
 // Central list of images (update names if you add/remove files)
 const IMAGES = [
-  'photo1.jpg','photo2.jpg','photo3.jpg','photo4.jpg','photo5.jpg','photo6.jpg','photo7.jpg','photo8.png','photo9.jpg','photo10.jpg','photo11.jpg','photo12.jpg','photo13.jpg','photo14.jpg','photo15.jpg','photo16.png','photo17.jpg','photo18.jpg'
+  'photo1.jpg','photo2.jpg','photo3.jpg','photo4.jpg','photo5.jpg','photo6.jpg','photo7.jpg','photo8.png','photo9.jpg','photo10.jpg','photo11.jpg','photo12.jpg','photo13.jpg','photo14.jpg','photo15.jpg'
 ];
 // Load all images from the images/ folder into the gallery
 function loadGallery() {
