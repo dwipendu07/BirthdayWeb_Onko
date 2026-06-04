@@ -1,5 +1,5 @@
 // Typing effect on the hero section
-const text = "Today the world celebrates the most beautiful soul. ❤️";
+const text = "Today's the birthday of the most beautiful soul. ❤️";
 let i = 0;
 
 function type() {
